@@ -6,14 +6,23 @@ import { GiHamburgerMenu } from 'react-icons/gi'
 import { GrClose } from 'react-icons/gr'
 import {useNavigate} from 'react-router-dom'
 import { AuthContext } from "../../context/AuthContext"
-interface INavbar {
-    userAuthenticated: boolean
-}
 
-export const Navbar = ({ userAuthenticated }: INavbar) => {
+interface INavbar {
+    setModalState: React.Dispatch<React.SetStateAction<boolean>>;
+    userAuthenticated: boolean;
+  }
+
+export const Navbar = ({ userAuthenticated, setModalState }: INavbar) => {
     const [showNavbarMobile, setShowNavbarMobile] = useState<boolean>(false)
     const {currentUser} = useContext(AuthContext)
     const navigate = useNavigate()
+
+
+    const changeModalState = () => {
+        console.log(`pegou`)
+        setModalState((currentModalState: boolean) => !currentModalState);
+    };
+
     return (
         <StyledNavbar>
             <nav>
@@ -26,7 +35,7 @@ export const Navbar = ({ userAuthenticated }: INavbar) => {
                     )}
                 </button>
                 {userAuthenticated ? (
-                    <div className="profile-info">
+                    <div onClick={changeModalState} className="profile-info">
                         <h2 className="profile-initials">{currentUser?.name[0].toUpperCase()}{currentUser?.name[1].toUpperCase()}</h2>
                         <p>{currentUser?.name}</p>
                     </div>

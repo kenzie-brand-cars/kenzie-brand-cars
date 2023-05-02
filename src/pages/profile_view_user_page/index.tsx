@@ -1,18 +1,31 @@
 import { useParams } from "react-router-dom"
 import { Container } from "../../components/container"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { AuthContext } from "../../context/AuthContext"
 import { StyledProfileViewUserPage } from "./style"
 import { CircleInitials } from "../../components/circle_initials"
 import { CardAnnounce } from "./components/card_announce/card-announce"
+import Modal from "../../components/navbar/components/modal_profile"
 
 
 
 export const ProfileViewUserPage = () => {
-    const { currentUser } = useContext(AuthContext)
+    const { currentUser, modalState } = useContext(AuthContext)
+
+    useEffect(() => {
+        console.log(modalState)
+      }, [modalState]);
+
     const { id } = useParams()
+
     return (
         <Container>
+            {modalState ? 
+            <>
+                <Modal/> 
+            </>
+            : 
+            <></>}
             <StyledProfileViewUserPage>
                 <div className="bg-brand-color">
                     <div className="card">
@@ -37,7 +50,7 @@ export const ProfileViewUserPage = () => {
                 </div>
                 <div className="pagination">
                     <p>1 de 2</p>
-                    <p className="forwad">Seguinte</p>
+                    <p className="forward">Seguinte</p>
                 </div>
             </StyledProfileViewUserPage>
         </Container>
