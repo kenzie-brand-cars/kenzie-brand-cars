@@ -24,7 +24,6 @@ export default function HomePage() {
 
   return (
     <>
-      <Navbar setModalState={setModalState} userAuthenticated={userAuthenticated}/>
       {modalState ? 
             <>
                 <Modal/> 

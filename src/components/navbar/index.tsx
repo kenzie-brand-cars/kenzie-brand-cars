@@ -19,14 +19,13 @@ export const Navbar = ({ userAuthenticated, setModalState }: INavbar) => {
 
 
     const changeModalState = () => {
-        console.log(`pegou`)
         setModalState((currentModalState: boolean) => !currentModalState);
     };
 
     return (
         <StyledNavbar>
             <nav>
-                <img src={logo} alt="Logo da Motors Shop"  onClick={()=> navigate('')}/>
+                <img src={logo} alt="Logo da Motors Shop" className="logo"  onClick={()=> navigate('/home')}/>
                 <button className="menu-burger" onClick={() => setShowNavbarMobile(!showNavbarMobile)}>
                     {showNavbarMobile ? (
                         <GrClose size={20} />

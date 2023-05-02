@@ -31,6 +31,9 @@ export const StyledNavbar = styled.header`
       display: none;
     }
   }
+  .logo{
+    cursor: pointer;
+  }
   .profile-info {
     display: none;
     height: 100%;

@@ -1,54 +1,60 @@
 import { createContext, useEffect, useState } from "react";
 
-interface IAuthContextProps{
+interface IAuthContextProps {
     userAuthenticated: boolean,
     currentUser: IUser | undefined,
     loading: boolean,
     modalState: boolean,
     setModalState: React.Dispatch<React.SetStateAction<boolean>>
+    trigger: boolean
+    setTrigger: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-interface IAuthContextProviderProps{
+interface IAuthContextProviderProps {
     children: React.ReactNode
 }
 
 export interface IUser {
-    id:          string;
-    name:        string;
-    email:       string;
-    cpf:         string;
-    phone:       string;
-    birthDate:   string;
+    id: string;
+    name: string;
+    email: string;
+    cpf: string;
+    phone: string;
+    birthDate: string;
     description: string;
-    type:        string;
-    admin:       boolean;
+    type: string;
+    admin: boolean;
 }
 
 export const AuthContext = createContext({} as IAuthContextProps)
 
 
-export const AuthContextProvider = ({children}: IAuthContextProviderProps) =>{
+export const AuthContextProvider = ({ children }: IAuthContextProviderProps) => {
     const [userAuthenticated, setUserAuthenticated] = useState<boolean>(false)
     const [currentUser, setCurrentUser] = useState<IUser>()
     const [loading, setLoading] = useState<boolean>(true)
     const [modalState, setModalState] = useState<boolean>(false);
-    const verifyAuthUser = () =>{
+    const [trigger, setTrigger] = useState<boolean>(false)
+    const verifyAuthUser = () => {
         const currentToken = localStorage.getItem('kenzie-brand-cars:token')
         const currentUser = localStorage.getItem('kenzie-brand-cars:current-user')
-        if(currentToken && currentUser){
+        if (currentToken && currentUser) {
             setUserAuthenticated(true)
             setCurrentUser(JSON.parse(currentUser))
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         verifyAuthUser()
-        setTimeout(()=>{
+        setTimeout(() => {
             setLoading(false)
 
-        },2000)
-    },[])
-    return(
-        <AuthContext.Provider value={{userAuthenticated, currentUser, loading, modalState, setModalState}}>
+        }, 2000)
+    }, [trigger])
+    return (
+        <AuthContext.Provider value={{
+            userAuthenticated, currentUser, loading, modalState, setModalState, trigger,
+            setTrigger
+        }}>
             {children}
         </AuthContext.Provider>
     )

@@ -23,7 +23,7 @@ function App() {
         <Route path='/home' element={<HomePage/>}/>
         <Route path='/announce' element={<Announce/>}/>
         <Route element={<ProtectedRoutes />}>
-          <Route path='/announce-detail' element={<DetailAnnouncementPage />} />
+          <Route path='/announce-detail' element={<Announce />} />
           <Route path='/profile/:id' element={<ProfileViewUserPage />} />
         </Route>
       </Routes>

@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useRequests } from '../../../../hooks/RequestsHooks'
 import { FormDataLoginUser, schema } from '../../../../schemas/login_user_schema'
+import { toast } from 'react-toastify'
 
 export default function LoginContent() {
   const { loginUserRequest } = useRequests()
@@ -13,9 +14,12 @@ export default function LoginContent() {
     resolver: yupResolver(schema)
   });
 
-  const handleLogin = (data: FormDataLoginUser) =>{
-    console.log(data)
-    loginUserRequest(data)
+  const handleLogin = async (data: FormDataLoginUser) =>{
+    await loginUserRequest(data)
+    navigate('/home')
+    toast.success('Login feito com sucesso',{
+      position: 'bottom-right'
+    })
   }
 
   const navigate = useNavigate()

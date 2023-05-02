@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const StyledAnnouncerCardDiv = styled.div`
 margin-top: 80px;
-
+h2{
+    margin-top: 10rem;
+}
 ul {
     display: flex;
     gap: 40px;

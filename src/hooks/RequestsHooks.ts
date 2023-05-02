@@ -2,6 +2,8 @@ import { AxiosError } from "axios"
 import { FormDataRegisterUser } from "../schemas/register_user_schema"
 import { api } from "../service/http"
 import { FormDataLoginUser } from "../schemas/login_user_schema"
+import { useContext } from "react"
+import { AuthContext } from "../context/AuthContext"
 
 
 interface IUserRegisterRequest{
@@ -9,6 +11,7 @@ interface IUserRegisterRequest{
 }
 
 export const useRequests = () => {
+    const {setTrigger, trigger} = useContext(AuthContext)
     const registerUserRequest = async (payload: FormDataRegisterUser) => {
         try {
             const response = await api.post('/user', payload)
@@ -28,6 +31,7 @@ export const useRequests = () => {
             console.log(response)
             localStorage.setItem('kenzie-brand-cars:token', response.data.token.token)
             localStorage.setItem('kenzie-brand-cars:current-user', JSON.stringify(response.data.token.user))
+            setTrigger(!trigger)
             return response
         } catch (error) {
             if(error instanceof AxiosError){

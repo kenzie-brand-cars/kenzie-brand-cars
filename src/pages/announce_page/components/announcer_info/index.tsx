@@ -5,7 +5,7 @@ import { StyledAnnounceHeaderDiv, StyledAnnouncerCard } from './style'
 export default function AnnouncerInfo() {
   return (
     <>
-      <Header/>
+      
       <StyledAnnounceHeaderDiv>
       </StyledAnnounceHeaderDiv>
       <StyledAnnouncerCard>
