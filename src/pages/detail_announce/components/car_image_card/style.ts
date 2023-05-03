@@ -8,15 +8,20 @@ export const StyledCarImageCard = styled.div`
   height: 40%;
   background-color: #fdfdfd;
   margin: 0 auto;
-  margin-top: 6rem;
+  margin-top: 4rem;
   padding: 2rem;
   border-radius: 4px;
   @media (min-width: 1024px){
       height: 35%;
   }
   .card-car{
+    margin: 0 auto;
     width: 100%;
     height: 100%;
+    @media (min-width: 420px){
+      width: 50%;
+      height: 50%;
+    }
     
   }
   img {

@@ -7,7 +7,7 @@ interface IAdvertiserCard{
 
 export const AdvertiserCard = ({className}: IAdvertiserCard) => {
     return (
-        <StyledAdvertiserCard>
+        <StyledAdvertiserCard className={className}>
             <div className="profile-initials">
                 <h2 >
                     S L
