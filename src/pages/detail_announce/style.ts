@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledDetailAnnouncementPage = styled.div`
-  height: 100%;
+  /* height: 100%; */
   .layout {
     width: 100%;
     height: 100%;
@@ -25,7 +25,7 @@ export const StyledDetailAnnouncementPage = styled.div`
     div{
       height: 100%;
     }
-    margin-top: 6rem;
+    margin-top: 4rem;
   }
   .custom-mobile{
     @media (min-width: 1024px){

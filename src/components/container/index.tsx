@@ -11,7 +11,6 @@ export const Container= ({children}: IContainerProps) => {
     <StyledContainer>
         <div className="content">
         {children}
-        <Footer/>
         </div>
     </StyledContainer>
     )

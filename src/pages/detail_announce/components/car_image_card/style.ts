@@ -8,7 +8,7 @@ export const StyledCarImageCard = styled.div`
   height: 40%;
   background-color: #fdfdfd;
   margin: 0 auto;
-  margin-top: 6rem;
+  margin-top: 4rem;
   padding: 2rem;
   border-radius: 4px;
   @media (min-width: 1024px){

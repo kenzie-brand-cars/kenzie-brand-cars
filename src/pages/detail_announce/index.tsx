@@ -65,10 +65,8 @@ export const DetailAnnouncementPage = () => {
     }
     return (
         <StyledDetailAnnouncementPage>
-            {/* <Navbar /> */}
             <Container>
-                <h2>Anuncio detail page                </h2>
-                {/* <div className="layout">
+                <div className="layout">
                     <div className="mobile">
                         <BackgroundBlue />
                         <CarImageCard sourceImage={currentCar.image} />
@@ -81,9 +79,9 @@ export const DetailAnnouncementPage = () => {
                     </div>
                     <div className="desktop">
                         <CarImageGalery className="custom-desktop" galery={currentCar.gallery}/>
-                        <AdvertiserCard />
+                        <AdvertiserCard/>
                     </div>
-                </div> */}
+                </div>
             </Container>
         </StyledDetailAnnouncementPage>
 

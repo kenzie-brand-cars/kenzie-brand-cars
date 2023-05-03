@@ -5,10 +5,14 @@ export const StyledRegisterPage = styled.div`
   background-color: #fff;
 
   @media (min-width: 768px) {
-    max-width: 25%;
+    max-width: 50%;
     margin: 0 auto;
     margin-top: 2rem !important;
     margin-bottom: 2rem !important;
+  }
+  @media (min-width: 1024px){
+    max-width: 25%;
+
   }
 
   h2 {

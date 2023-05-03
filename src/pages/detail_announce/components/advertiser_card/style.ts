@@ -4,7 +4,7 @@ export const StyledAdvertiserCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
   width: calc(100% - 2rem);
   height: 50%;
   background-color: #fdfdfd;
