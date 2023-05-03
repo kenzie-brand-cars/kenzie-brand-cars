@@ -1,35 +1,36 @@
 import styled from "styled-components";
 
 export const StyledDetailAnnouncementPage = styled.div`
-  /* height: 100%; */
-  .layout {
+width: 100%;
+height: 100%;
+background-color: red;
+.layout{
     width: 100%;
     height: 100%;
     display: flex;
-    .mobile {
-      width: 100%;
-      height: 100%;
+}
+.original{
+    width: 100%;
+    height: 100%;
+    @media (min-width: 1024px){
+        width: 50%;
     }
-    .desktop {
-      display: none;
-      width: 50%;
-      height: 100%;
-      @media (min-width: 1024px) {
+}
+.only-mobile{
+    display: flex;
+    @media (min-width: 1024px){
+        display: none;
+    }
+}
+.desktop{
+    display: none;
+    margin-top: 3rem;
+    width: 50%;
+    height: 50%;
+    @media (min-width: 1024px){
         display: flex;
         flex-direction: column;
-      }
+        gap: 3rem;
     }
-  }
-  .custom-desktop{
-    min-height: 15.5rem;
-    div{
-      height: 100%;
-    }
-    margin-top: 4rem;
-  }
-  .custom-mobile{
-    @media (min-width: 1024px){
-      display: none;
-    }
-  }
+}
 `;

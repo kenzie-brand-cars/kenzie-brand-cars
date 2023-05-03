@@ -16,8 +16,9 @@ background-color: #F1F3F5;
     height: calc(100% - 5rem);
     margin-top: 5rem;
     overflow-y: auto;
-    /* @media (min-width: 1024px){
-        width: 80%
-    } */
+}
+.content-children{
+    width: 100%;
+    height: min-content;
 }
 `

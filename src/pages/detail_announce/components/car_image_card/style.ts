@@ -15,8 +15,13 @@ export const StyledCarImageCard = styled.div`
       height: 35%;
   }
   .card-car{
+    margin: 0 auto;
     width: 100%;
     height: 100%;
+    @media (min-width: 420px){
+      width: 50%;
+      height: 50%;
+    }
     
   }
   img {
