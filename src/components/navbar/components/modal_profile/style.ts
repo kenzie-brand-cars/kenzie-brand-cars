@@ -55,7 +55,22 @@ textarea {
     gap: 10px;
 }
 
+.btn_div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 .footer_btns button {
+    width: 150px;
+    height: 50px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+
+.send_announce_btn {
     width: 150px;
     height: 50px;
     border-radius: 4px;
