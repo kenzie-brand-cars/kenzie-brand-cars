@@ -32,7 +32,7 @@ height: 397px;
     }
 
     .username {
-        width: 150px;
+        width: 280px;
         margin-left: 30px;
     }
 

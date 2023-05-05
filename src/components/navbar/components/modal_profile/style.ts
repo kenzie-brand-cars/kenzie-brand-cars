@@ -14,6 +14,7 @@ background: #FFFFFF;
 border-radius: 8px;
 flex-direction: column;
 padding: 18px 24px;
+overflow-y: auto;
 
 h1 {
     font-size: 16px;
