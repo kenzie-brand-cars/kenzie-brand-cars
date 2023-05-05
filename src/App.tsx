@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
 
 function App() {
 
-  const { userAuthenticated, modalState, setModalState} = useContext(AuthContext)
+  const { userAuthenticated, modalState, setModalState } = useContext(AuthContext)
 
   return (
     <BrowserRouter>
