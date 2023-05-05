@@ -1,6 +1,6 @@
 import { AxiosError } from "axios"
 import { FormDataRegisterUser } from "../schemas/register_user_schema"
-import { api } from "../service/http"
+import api from "../service/http"
 import { FormDataLoginUser } from "../schemas/login_user_schema"
 import { useContext } from "react"
 import { AuthContext } from "../context/AuthContext"
