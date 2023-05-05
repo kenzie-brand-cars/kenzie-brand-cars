@@ -22,7 +22,7 @@ function App() {
         <Route path='' element={userAuthenticated? <Navigate to='/home' />:<Login />} />
         <Route path='/register' element={ userAuthenticated? <Navigate to='/announce-detail' />:<RegisterPage />} />
         <Route path='/home' element={<HomePage/>}/>
-        <Route path='/announce' element={<Announce/>}/>
+        <Route path='/announce/:id' element={<Announce/>}/>
         <Route element={<ProtectedRoutes />}>
           <Route path='/announce-detail' element={<DetailAnnouncementPage />} />
           <Route path='/profile/:id' element={<ProfileViewUserPage />} />
