@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { api } from "../service/http";
 
 interface IAuthContextProps {
     userAuthenticated: boolean,
@@ -42,6 +43,7 @@ export const AuthContextProvider = ({ children }: IAuthContextProviderProps) => 
             setUserAuthenticated(true)
             setCurrentUser(JSON.parse(currentUser))
         }
+        api.defaults.headers.common.Authorization = currentToken
     }
     useEffect(() => {
         verifyAuthUser()

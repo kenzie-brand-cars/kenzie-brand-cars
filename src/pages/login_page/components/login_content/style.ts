@@ -6,6 +6,7 @@ margin: 10px auto;
 background-color: white;
 padding: 28px 30px;
 text-decoration: none;
+margin-bottom: 4.9rem;
 
 h1 {
     margin-bottom: 32px;

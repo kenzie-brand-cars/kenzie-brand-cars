@@ -12,6 +12,9 @@ import { AnnouncementComents } from "./components/announcement_coments"
 import { CreateComentCard } from "./components/create_comment_card"
 import { Footer } from "../../components/footer"
 import { BackgroundBlue } from "./components/bg_blue"
+import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useRequests } from "../../hooks/RequestsHooks"
 export interface ICarAnnouncementDetail {
     year: number;
     km: number;
@@ -23,45 +26,31 @@ export interface ICarAnnouncementDetail {
     model: string;
     fuel: string;
     color: string;
-    gallery: Gallery;
+    gallery: string[];
 }
-
-export interface Gallery {
-    images: string[];
-}
-
 
 
 export const DetailAnnouncementPage = () => {
-    const currentCar: ICarAnnouncementDetail = {
-        "year": 2019,
-        "km": 20000,
-        "price_fipe": 40000,
-        "price": 42000,
-        "description": "Excelente estado, único dono",
-        "image": modelCar,
-        "mark": "Toyota",
-        "model": "Corolla",
-        "fuel": "Gasolina",
-        "color": "Preto",
-        "gallery": {
-            "images": [
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar
-            ]
+
+    const {getSpecificAnnounce} = useRequests()
+    const {id} = useParams()
+    const [currentCar, setCurrentCar] = useState<ICarAnnouncementDetail>()
+    const fetchData = async () => {
+        const resposne =  await getSpecificAnnounce(parseFloat(id as string))
+        if(resposne){
+            const gallery: string[] = []
+            for(let i =0 ; i < 5; i++) {
+                gallery.push(resposne.image)
+            }
+            console.log(resposne)
+            setCurrentCar({...resposne, gallery})
         }
+    }
+    useEffect(()=>{
+        fetchData()
+    },[])
+    if(!currentCar){
+        return null
     }
     return (
         <StyledDetailAnnouncementPage>
