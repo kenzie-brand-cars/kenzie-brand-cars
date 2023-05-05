@@ -13,18 +13,18 @@ import Footer from './pages/home/components/Footer';
 
 function App() {
 
-  const { userAuthenticated, modalState, setModalState} = useContext(AuthContext)
+  const { userAuthenticated, modalState, setModalState } = useContext(AuthContext)
 
   return (
     <BrowserRouter>
       <Navbar setModalState={setModalState} userAuthenticated={userAuthenticated} />
       <Routes>
-        <Route path='' element={userAuthenticated? <Navigate to='/home' />:<Login />} />
-        <Route path='/register' element={ userAuthenticated? <Navigate to='/announce-detail' />:<RegisterPage />} />
-        <Route path='/home' element={<HomePage/>}/>
-        <Route path='/announce/:id' element={<Announce/>}/>
+        <Route path='' element={userAuthenticated ? <Navigate to='/home' /> : <Login />} />
+        <Route path='/register' element={userAuthenticated ? <Navigate to='/announce-detail' /> : <RegisterPage />} />
+        <Route path='/home' element={<HomePage />} />
+        <Route path='/announce' element={<Announce />} />
         <Route element={<ProtectedRoutes />}>
-          <Route path='/announce-detail' element={<DetailAnnouncementPage />} />
+          <Route path='/announce-detail/:id' element={<DetailAnnouncementPage />} />
           <Route path='/profile/:id' element={<ProfileViewUserPage />} />
         </Route>
       </Routes>

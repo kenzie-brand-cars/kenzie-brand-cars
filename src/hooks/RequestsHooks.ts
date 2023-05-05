@@ -4,6 +4,7 @@ import api from "../service/http"
 import { FormDataLoginUser } from "../schemas/login_user_schema"
 import { useContext } from "react"
 import { AuthContext } from "../context/AuthContext"
+import { ICarAnnouncementDetail } from "../pages/detail_announce"
 
 
 interface IUserRegisterRequest{
@@ -41,9 +42,23 @@ export const useRequests = () => {
             }
         }
     }
+    const getSpecificAnnounce = async (payload: number) => {
+        try {
+            const response = await api.get(`/announce/${payload}`)
+            console.log(response)
+            return response.data as ICarAnnouncementDetail
+        } catch (error) {
+            if(error instanceof AxiosError){
+                console.log(error.response?.data)
+            }else{
+                console.log(error)
+            }
+        }
+    }
     return{
         registerUserRequest,
-        loginUserRequest
+        loginUserRequest,
+        getSpecificAnnounce
     }
 
 }
