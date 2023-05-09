@@ -5,16 +5,6 @@ import { data } from '../mockeData'
 interface HomeProviderPropsInterface {
   children: React.ReactNode;
 }
-
-interface IFiltterData {
-  mark: string | null;
-  model: string | null;
-  fuel: string | null;
-  color: string | null;
-  year: number | null;
-  price: number | null;
-  km: number | null;
-}
 export interface ICard {
   id: number;
   description: string;
@@ -25,6 +15,15 @@ export interface ICard {
   model: string;
   mark: string;
   owner: string;
+}
+interface IFiltterData {
+  mark: string | null;
+  model: string | null;
+  fuel: string | null;
+  color: string | null;
+  year: number | null;
+  price: number | null;
+  km: number | null;
 }
 
 type IHomeContextTypes = {

@@ -1,8 +1,8 @@
 import React, {useContext} from 'react'
-import { Card } from '../../../home/components/Card'
 import { ICard } from '../../../../providers/homeContext';
 import { StyledAnnouncerCardDiv } from './styled'
 import { HomeContext } from '../../../../providers/homeContext';
+import { Card } from '../../../../components/card';
 
 export default function AnnouncerCards() {
 const { pagesItemsList, axiosFilterRequest, setModalFiltter } = useContext(HomeContext);

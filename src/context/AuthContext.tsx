@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { api } from "../service/http";
+import  api  from "../service/http";
 
 interface IAuthContextProps {
     userAuthenticated: boolean,

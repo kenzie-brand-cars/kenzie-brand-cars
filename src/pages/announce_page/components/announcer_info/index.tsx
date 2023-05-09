@@ -1,5 +1,4 @@
 import React, {useContext} from 'react'
-import Header from '../../../home/components/Header'
 import { StyledAnnounceHeaderDiv, StyledAnnouncerCard } from './style'
 import { AuthContext } from '../../../../context/AuthContext'
 

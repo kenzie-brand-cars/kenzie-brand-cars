@@ -1,6 +1,16 @@
 import { CardStyle } from "./style";
-import { ICard } from "../../../../providers/homeContext";
 
+export interface ICard {
+  id: number;
+  description: string;
+  year: number;
+  km: number;
+  price: number;
+  image: string;
+  model: string;
+  mark: string;
+  owner: string;
+}
 type CardProps = {
   item: ICard;
 };
