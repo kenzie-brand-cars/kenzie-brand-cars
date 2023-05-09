@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { StyledLoginContent } from './style'
 import { useNavigate } from 'react-router-dom'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -6,11 +5,11 @@ import { useForm } from 'react-hook-form'
 import { useRequests } from '../../../../hooks/RequestsHooks'
 import { FormDataLoginUser, schema } from '../../../../schemas/login_user_schema'
 import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom';
 
 export default function LoginContent() {
   const { loginUserRequest } = useRequests()
-  const [token, setToken] = useState('')
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormDataLoginUser>({
+  const { register, handleSubmit } = useForm<FormDataLoginUser>({
     resolver: yupResolver(schema)
   });
 
@@ -33,7 +32,7 @@ export default function LoginContent() {
         <label>Senha:</label>
         <input type="password" id="password" placeholder="Digite sua senha" {...register('password')}/>
 
-        <a href="#">Esqueci minha senha</a>
+        <Link to="/user/reset_password">Esqueci minha senha</Link>
 
         <button className='submit_button' type="submit">Entrar</button>
         <p className='account_message'>Ainda não possui conta?</p>

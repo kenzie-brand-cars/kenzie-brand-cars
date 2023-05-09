@@ -7,10 +7,6 @@ import { AuthContext } from "../context/AuthContext"
 import { ICarAnnouncementDetail } from "../pages/detail_announce"
 
 
-interface IUserRegisterRequest{
-
-}
-
 export const useRequests = () => {
     const {setTrigger, trigger} = useContext(AuthContext)
     const registerUserRequest = async (payload: FormDataRegisterUser) => {

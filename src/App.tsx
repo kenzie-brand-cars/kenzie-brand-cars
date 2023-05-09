@@ -9,10 +9,11 @@ import { ProfileViewUserPage } from './pages/profile_view_user_page';
 import { ProtectedRoutes } from './components/protected_routes';
 import Announce from './pages/announce_page';
 import { RecoveryPasswordPage } from './pages/recovery_password_page';
+import { RecoveryPassMailPage } from './pages/recovery_pass_email_page';
 
 function App() {
 
-  const { userAuthenticated, modalState, setModalState } = useContext(AuthContext)
+  const { userAuthenticated, setModalState } = useContext(AuthContext)
 
   return (
     <BrowserRouter>
@@ -22,7 +23,8 @@ function App() {
         <Route path='/register' element={userAuthenticated ? <Navigate to='/announce-detail' /> : <RegisterPage />} />
         <Route path='/announcer/:id' element={<Announce />} />
         <Route path='/profile/' element={<ProfileViewUserPage />} />
-        <Route path='/recovery' element={<RecoveryPasswordPage />} />
+        <Route path='/user/reset_password' element={<RecoveryPassMailPage />} />
+        <Route path='/user/reset_password/:token' element={<RecoveryPasswordPage />} />
         <Route element={<ProtectedRoutes />}>
           <Route path='/announce-detail' element={<DetailAnnouncementPage />} />
         </Route>
