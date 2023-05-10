@@ -9,6 +9,7 @@ import { ProfileViewUserPage } from './pages/profile_view_user_page';
 import { ProtectedRoutes } from './components/protected_routes';
 import Announce from './pages/announce_page';
 import { RecoveryPasswordPage } from './pages/recovery_password_page';
+import { HomePage } from './pages/home';
 
 function App() {
 
@@ -23,8 +24,9 @@ function App() {
         <Route path='/announcer/:id' element={<Announce />} />
         <Route path='/profile/' element={<ProfileViewUserPage />} />
         <Route path='/recovery' element={<RecoveryPasswordPage />} />
+        <Route path='/home' element={<HomePage/>}/>
         <Route element={<ProtectedRoutes />}>
-          <Route path='/announce-detail' element={<DetailAnnouncementPage />} />
+          <Route path='/announce-detail/:id' element={<DetailAnnouncementPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

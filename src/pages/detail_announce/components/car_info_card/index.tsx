@@ -25,6 +25,8 @@ export const CarInfoCard = ({
     fuel,
     color
 }: ICarInfoCardProps) => {
+    console.log(km)
+    console.log(year)
     return (
         <CardContainer>
 
