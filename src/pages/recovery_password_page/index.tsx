@@ -1,8 +1,8 @@
 import { Container } from "../../components/container"
 import { StyledContainerReset, StyledRecoveryPasswordPage } from "./style"
 import { useState } from "react"
-import axios from "axios"
 import { redirect, useParams } from "react-router-dom"
+import api from "../../service/http"
 
 export const RecoveryPasswordPage = () => {
   const [password, setPassword] = useState('');
@@ -20,7 +20,7 @@ export const RecoveryPasswordPage = () => {
     }
     try {
       setLoading(true);
-      await axios.patch(`/user/reset_password/${token}`, { password });
+      await api.patch(`/user/reset_password/${token}`, { password });
       setSenhaAlterada(true);
     } catch (error: any) {
       setError(error.response?.data?.message || 'Ocorreu um erro ao alterar sua senha.');
