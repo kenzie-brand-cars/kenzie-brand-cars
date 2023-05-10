@@ -5,9 +5,7 @@ import { AuthContext } from "../../context/AuthContext"
 import { StyledProfileViewUserPage } from "./style"
 import { CircleInitials } from "../../components/circle_initials"
 import { CardAnnounce } from "./components/card_announce/card-announce"
-import Modal from "../../components/navbar/components/modal_profile"
 import CreateAnnounceModal from "./components/modal_announce"
-import axios from "axios"
 import api from "../../service/http"
 
 interface iOwner {

@@ -25,7 +25,7 @@ export const StyledRecoveryPasswordPage = styled.div`
       margin-bottom: 0.5rem;
     }
 
-    input {
+    input[type="email"] {
       width: 30%;
       padding: 1rem;
       border-radius: 4px;
