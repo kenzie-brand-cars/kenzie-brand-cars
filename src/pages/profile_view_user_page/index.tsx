@@ -39,6 +39,34 @@ interface iOwner {
     color: string;
     owner: iOwner;
   }
+
+  interface CarItem {
+    color: string;
+    createdAt: string;
+    deletedAt: string | null;
+    description: string;
+    fuel: string;
+    id: number;
+    image: string;
+    km: number;
+    mark: string;
+    model: string;
+    owner: {
+      name: string;
+      id: string;
+      email: string;
+      cpf: string;
+      phone: string;
+    };
+    price: number;
+    price_fipe: number;
+    publishedAt: boolean;
+    softDeleted: boolean;
+    updatedAt: string;
+    withinFipe: boolean;
+    year: string;
+  }
+  
   
   
   export const ProfileViewUserPage = () => {
@@ -51,7 +79,7 @@ interface iOwner {
         api.get('/announce')
           .then(response => {
             
-            setAnnounces(response.data);
+            setAnnounces(response.data.filter((item:any)=> item.owner.id === currentUser?.id));                
           })
           .catch(error => {
             console.log(error); 
@@ -67,12 +95,15 @@ interface iOwner {
     const handleCreateAnnounceClick = () => {
       setShowModal(true);
     }
+    const handleCloseAnnounceClick = () => {
+      setShowModal(false);
+    }
 
     return (
         <Container>
             {showModal ? 
             <>
-                <CreateAnnounceModal/> 
+                <CreateAnnounceModal handleClick={handleCloseAnnounceClick}/> 
             </>
             : 
             <></>}

@@ -20,7 +20,11 @@ import { toast } from 'react-toastify';
         imagem_galeria_2: string;
     }
 
-export default function CreateAnnounceModal() {
+    interface Props {
+        handleClick: () => void;
+    }
+
+    const CreateAnnounceModal: React.FC<Props> = ({ handleClick }) => {
         const [formData, setFormData] = useState<FormData>({
             marca: '',
             modelo: '',
@@ -79,12 +83,6 @@ export default function CreateAnnounceModal() {
                     }
                 }
         };
-
-        // const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        //     if (e.key === 'Escape') {
-        //     //   handleCloseModal();
-        //     }
-        //   };
     
       return (
         <>
@@ -92,6 +90,7 @@ export default function CreateAnnounceModal() {
         </StyledBackgroundDiv>
         {/* <StyledFormDiv onKeyDown={handleKeyDown}> */}
         <StyledFormDiv>
+            <span onClick={handleClick} className='close_icon'>X</span>
             <form onSubmit={handleSubmit}>
             <label htmlFor="marca">Marca:</label>
             <input type="text" id="marca" name="marca" onChange={handleChange} value={formData.marca} />
@@ -141,3 +140,4 @@ export default function CreateAnnounceModal() {
       )
     }
     
+    export default CreateAnnounceModal;
