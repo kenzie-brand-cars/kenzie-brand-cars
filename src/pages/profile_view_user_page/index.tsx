@@ -71,24 +71,23 @@ interface iOwner {
   
   export const ProfileViewUserPage = () => {
       const [showModal, setShowModal] = useState(false);
+      const [announceCreated, setAnnounceCreated] = useState(false);
       const { currentUser, modalState } = useContext(AuthContext)
       const [announces, setAnnounces] = useState<Array<iAnnounce>>([]);
 
       useEffect(() => {
-        
-        api.get('/announce')
-          .then(response => {
-            
-            setAnnounces(response.data.filter((item:any)=> item.owner.id === currentUser?.id));                
-          })
-          .catch(error => {
-            console.log(error); 
-          });
-      }, [modalState]);
-
-      useEffect(() => {
-        
-      }, [announces]);
+        console.log(announces)
+        async function loadAnnounces() {
+          try {
+            const response = await api.get('/announce');
+            const filteredAnnounces = response.data.filter((item:any)=> item.owner.id === currentUser?.id);
+            setAnnounces(filteredAnnounces);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+        loadAnnounces();
+      }, [modalState, announceCreated]);
 
     const { id } = useParams()
 
@@ -97,6 +96,10 @@ interface iOwner {
     }
     const handleCloseAnnounceClick = () => {
       setShowModal(false);
+      setTimeout(() => {
+        setAnnounceCreated(true)
+      }, 1000);
+      setAnnounceCreated(false)
     }
 
     return (
@@ -107,6 +110,7 @@ interface iOwner {
             </>
             : 
             <></>}
+            {announces ? 
             <StyledProfileViewUserPage>
                 <div className="bg-brand-color">
                     <div className="card">
@@ -129,6 +133,9 @@ interface iOwner {
                     <p className="forward">Seguinte</p>
                 </div>
             </StyledProfileViewUserPage>
+            :
+            <></>
+            }
         </Container>
     )
 }

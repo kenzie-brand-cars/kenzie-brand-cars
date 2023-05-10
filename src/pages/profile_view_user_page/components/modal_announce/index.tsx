@@ -82,13 +82,13 @@ import { toast } from 'react-toastify';
                         console.log(error)
                     }
                 }
+                handleClick()
         };
     
       return (
         <>
         <StyledBackgroundDiv>
         </StyledBackgroundDiv>
-        {/* <StyledFormDiv onKeyDown={handleKeyDown}> */}
         <StyledFormDiv>
             <span onClick={handleClick} className='close_icon'>X</span>
             <form onSubmit={handleSubmit}>

@@ -41,6 +41,8 @@ export const StyledNavbar = styled.header`
     align-items: center;
     padding: 0 1rem;
     gap: 1rem;
+    cursor: pointer;
+    
     p {
       color: #495057;
     }
