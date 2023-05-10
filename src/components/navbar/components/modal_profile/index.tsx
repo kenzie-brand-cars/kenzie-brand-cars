@@ -49,7 +49,6 @@ export default function Modal() {
       }
       try {
         const response = await api.patch(`/user/${currentUser?.id}`, userEditData)
-        console.log(response)
         toast.success('Usuário editado com sucesso',{
             position: 'bottom-right'
         })

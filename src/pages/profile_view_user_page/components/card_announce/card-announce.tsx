@@ -11,7 +11,7 @@ interface iCardAnnounceProps {
 
 export const CardAnnounce = (props: iCardAnnounceProps) => {
     const {currentUser} = useContext(AuthContext)
-    console.log(props)
+    
     return (
         <StyledCardAnnounce>
             <div className="card-announce">

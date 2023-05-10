@@ -16,7 +16,7 @@ export const AnnouncementComents = ({coments}: IAnnouncementComentsProps) => {
                 <div className="coment" key={comment.text}>
                     <div className="comment-header">
                         <p className="profile-initials">
-                        {comment.author.name.split(' ').length > 0 ? (
+                        {comment.author.name.split(' ').length > 1 ? (
                     <>
                         {comment.author.name.split(' ')[0][0]}{comment.author.name.split(' ')[1][0]}
                     </>

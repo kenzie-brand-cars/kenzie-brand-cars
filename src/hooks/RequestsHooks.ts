@@ -41,7 +41,6 @@ export const useRequests = () => {
     const registerUserRequest = async (payload: FormDataRegisterUser) => {
         try {
             const response = await api.post('/user', payload)
-            console.log(response)
             return response
         } catch (error) {
             if(error instanceof AxiosError){
@@ -54,7 +53,6 @@ export const useRequests = () => {
     const loginUserRequest = async (payload: FormDataLoginUser) =>{
         try {
             const response = await api.post('/login', payload)
-            console.log(response)
             localStorage.setItem('kenzie-brand-cars:token', response.data.token)
             localStorage.setItem('kenzie-brand-cars:current-user', JSON.stringify(response.data.user))
             setTrigger(!trigger)
@@ -83,7 +81,7 @@ export const useRequests = () => {
     const getFilterParams = async (): Promise<IFiltersResponse | void> => {
         try {
             const response = await api.get<IFiltersResponse>('/filter')
-            console.log(response.data)
+            
             return response.data
         } catch (error) {
             console.log(error)
@@ -92,7 +90,7 @@ export const useRequests = () => {
     const getAllAnnounces = async (): Promise<IAnnouncesReponse[] | void> => {
         try {
             const response = await api.get<IAnnouncesReponse[]>('/announce')
-            console.log(response.data)
+            
             return response.data
         } catch (error) {
             console.log(error)
@@ -101,7 +99,7 @@ export const useRequests = () => {
     const getSpecifiAnnounceById = async (id: number): Promise<IAnnouncesReponse | void> => {
         try {
             const response = await api.get<IAnnouncesReponse>(`/announce/${id}`)
-            console.log(response.data)
+            
             return response.data
         } catch (error) {
             console.log(error)
@@ -110,7 +108,7 @@ export const useRequests = () => {
     const publicComment = async (idAnnounce: number, text: string): Promise<void>  =>{
         try {
             const response = await api.post(`/announce/${idAnnounce}/comments`, {id_ann: idAnnounce, text: text})
-            console.log(response)
+            
         } catch (error) {
             console.log(error)
         }

@@ -13,13 +13,13 @@ export const AdvertiserCard = ({ className, owner }: IAdvertiserCard) => {
     const navigate = useNavigate()
     const handleNavigateToProfileUser = (id: string) =>{
         console.log(id)
-        // navigate('/') nessa linha entra a rota da pagina que o pedro ta criando
+        navigate(`/announcer/${id}`) 
     }
     return (
         <StyledAdvertiserCard className={className}>
             <div className="profile-initials">
 
-                {owner.name.split(' ').length > 0 ? (
+                {owner.name.split(' ').length > 1 ? (
                     <h2>
                         {owner.name.split(' ')[0][0]} {owner.name.split(' ')[1][0]}
                     </h2>

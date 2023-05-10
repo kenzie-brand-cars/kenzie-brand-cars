@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { AnnouncesContext } from "../../../../context/AnnouncesContext";
 import { useContext } from "react";
 import { IAnnouncesReponse } from "../announce_card";
+import { FilterContextMobile } from "../../../../context/FilterContext";
 
 
 
@@ -14,24 +15,23 @@ import { IAnnouncesReponse } from "../announce_card";
 export const Filter = ({...filters} :IFiltersResponse) => {
     const {getFilterAnnounces} = useRequests()
     const {announces, setAnnounces, trigger} = useContext(AnnouncesContext)
-    
+    const {displayFilter, setDisplayFilter} = useContext(FilterContextMobile)
     const { register, handleSubmit, reset, formState: { errors } } = useForm<FormFilter>({
         resolver: yupResolver(schema)
       });
       const handleSubmitFilter = async (data: FormFilter) =>{
-        console.log(data)
-        console.log(errors)
         const response = await getFilterAnnounces(data)
         if(response){
             setAnnounces(response)
         }
+        setDisplayFilter(!displayFilter)
       }
       const handleResetFilters = () =>{
-        reset()
+          reset()
       }
     return (
-        <StyledFilter>
-            <form onSubmit={handleSubmit(handleSubmitFilter)}>
+        <StyledFilter display={displayFilter}>
+            <form onSubmit={handleSubmit(handleSubmitFilter)} >
             <div className="mark">
                 <h2>Marca</h2>
                 <ul>

@@ -16,7 +16,7 @@ export const RegisterPage = () => {
         resolver: yupResolver(schema)
       });
     const handleRegister = (data:FormDataRegisterUser ) =>{
-        console.log(data)
+        
         registerUserRequest(data)
         navigate('')
     }

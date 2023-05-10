@@ -47,10 +47,10 @@ interface iOwner {
       const [announces, setAnnounces] = useState<Array<iAnnounce>>([]);
 
       useEffect(() => {
-        console.log(modalState)
+        
         api.get('/announce')
           .then(response => {
-            console.log(response.data)
+            
             setAnnounces(response.data);
           })
           .catch(error => {
@@ -59,7 +59,7 @@ interface iOwner {
       }, [modalState]);
 
       useEffect(() => {
-        console.log(announces)
+        
       }, [announces]);
 
     const { id } = useParams()

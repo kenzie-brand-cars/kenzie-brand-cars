@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
-
-
-export const StyledFilter = styled.aside`
-.show{
-    display: block;
+interface IStyledFilterProps{
+    display: boolean
 }
-.hidden{
-    display: none;
-}
+
+export const StyledFilter = styled.aside<IStyledFilterProps>`
+transform: ${(props)=> props.display? "translateX(0)": "translateX(-100%)"} ;
+transition: .5s ease-in-out;
 position: absolute;
 top: 5rem;
 left: 0;
@@ -24,9 +22,7 @@ overflow-y: auto;
     width: 40%;
     overflow-y: none;
     height: auto;
-    .hidden{
-    display: block;
-}
+    transform: none;
 }
 div{
     margin-bottom: 1rem;

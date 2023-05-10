@@ -17,7 +17,7 @@ export const HomePage = () => {
     useEffect(() => {
         const handleGetFIlter = async () => {
             const response = await getFilterParams()
-            console.log(response)
+            
             if (response) {
                 setFilters(response)
             }
@@ -30,7 +30,7 @@ export const HomePage = () => {
             if (response) {
                 setAnnounces(response)
             }
-            console.log(response)
+            
         }
         handleGetAllAnnounces()
     },[])

@@ -15,7 +15,8 @@ export const CreateComentCard = ({idAnnounce}:ICreateComentCard) => {
     const {publicComment} = useRequests()
     const [comment, setComment] = useState<string>('')
     const handleSendComment = async() =>{
-        return await publicComment(idAnnounce, comment)
+        await publicComment(idAnnounce, comment)
+        window.location.reload()
     }
     return (
         <CardContainer>

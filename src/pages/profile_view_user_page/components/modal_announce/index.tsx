@@ -43,7 +43,7 @@ export default function CreateAnnounceModal() {
 
         const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            console.log(formData);
+            
             const dataVehicle = {
                 year: formData.ano,
                 km: formData.quilometragem,
@@ -67,7 +67,7 @@ export default function CreateAnnounceModal() {
               }
               try {
                 const response = await api.post(`/announce`, dataVehicle)
-                console.log(response)
+                
                 toast.success('Anúncio criado com sucesso',{
                     position: 'bottom-right'
                 })

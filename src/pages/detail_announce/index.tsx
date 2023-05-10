@@ -83,13 +83,13 @@ export const DetailAnnouncementPage = () => {
             for (let i = 0; i < 5; i++) {
                 gallery.push(resposne.image)
             }
-            console.log(resposne)
+            
             setCurrentCar({ ...resposne, gallery })
         }
     }
     useEffect(() => {
         fetchData()
-        console.log(currentCar?.year)
+        
     }, [])
     if (!currentCar) {
         return null

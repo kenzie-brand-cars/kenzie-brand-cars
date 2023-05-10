@@ -18,7 +18,7 @@ export const RecoveryPassMailPage = () => {
     try {
       setLoading(true);
       const response = await api.post('/user/reset_password', { email });
-      console.log(response)
+      
       setSuccess(true);
     } catch (error: any) {
       console.log(error)

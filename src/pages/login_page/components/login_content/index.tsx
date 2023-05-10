@@ -14,7 +14,7 @@ export default function LoginContent() {
   });
 
   const handleLogin = async (data: FormDataLoginUser) =>{
-    console.log(data)
+    
     await loginUserRequest(data)
     navigate('/home')
     toast.success('Login feito com sucesso',{

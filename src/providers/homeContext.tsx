@@ -130,8 +130,8 @@ export default function HomeProvider({ children }: HomeProviderPropsInterface) {
       )
       .join("&");
     const url = "http://localhost:3001/" + filteredParams;
-    console.log(url);
-    console.log("chamar o axios");
+    
+    
     setCardsList(data);
     const startIndex = 1;
     const endIndex = startIndex + itemsPerPage;
