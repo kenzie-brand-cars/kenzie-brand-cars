@@ -1,14 +1,15 @@
 import { StyledCircleInitials } from "./style"
 
-interface ICircleInitials{
+interface ICircleInitials {
     first: string
-    second: string
+    second?: string
     size?: number
+    color?: string
 }
 
-export const CircleInitials = ({first,second,size}:ICircleInitials) => {
-    return(
-        <StyledCircleInitials size={size}>
+export const CircleInitials = ({ first, second, size, color }: ICircleInitials) => {
+    return (
+        <StyledCircleInitials size={size} color={color}>
             {first}{second}
         </StyledCircleInitials>
     )

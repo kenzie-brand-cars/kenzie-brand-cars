@@ -9,7 +9,6 @@ interface ICarImageGalery {
 
 export const CarImageGalery = ({ galery,
     className }: ICarImageGalery) => {
-        console.log(galery)
     return (
         <CardContainer className={className}>
             <StyledCarImageGalery>

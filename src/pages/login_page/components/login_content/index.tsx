@@ -9,11 +9,12 @@ import { Link } from 'react-router-dom';
 
 export default function LoginContent() {
   const { loginUserRequest } = useRequests()
-  const { register, handleSubmit } = useForm<FormDataLoginUser>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormDataLoginUser>({
     resolver: yupResolver(schema)
   });
 
   const handleLogin = async (data: FormDataLoginUser) =>{
+    console.log(data)
     await loginUserRequest(data)
     navigate('/home')
     toast.success('Login feito com sucesso',{
