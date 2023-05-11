@@ -1,8 +1,8 @@
 import { StyledModalUser } from "./style"
 
 interface IModalUser {
-    title: string,
-    subtitle: string
+    title?: string,
+    subtitle?: string
     display: boolean
     children: React.ReactNode
 }
