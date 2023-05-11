@@ -8,75 +8,48 @@ import { CardAnnounce } from "./components/card_announce/card-announce"
 import CreateAnnounceModal from "./components/modal_announce"
 import api from "../../service/http"
 
-interface iOwner {
+export interface iOwner {
+  id: string;
+  name: string;
+  email: string;
+  cpf: string;
+  phone: string;
+}
+  
+export interface iAnnounce {
+  id: number;
+  mark: string;
+  model: string;
+  year: string;
+  km: number;
+  fuel: string;
+  price: number;
+  description: string;
+  image: string;
+  publishedAt: boolean;
+  softDeleted: boolean;
+  withinFipe: boolean;
+  deletedAt: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+  owner: {
+    id: string;
     name: string;
     email: string;
     cpf: string;
     phone: string;
-    birthDate: Date;
-    description: string;
-    type: string;
-    admin: boolean;
-  }
-  
-  export interface iAnnounce {
-    id: number;
-    year: number;
-    km: number;
-    price_fipe: number;
-    price: number;
-    description: string;
-    image: string;
-    withinFipe: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-    deletedAt: Date | null;
-    softDeleted: boolean;
-    publishedAt: boolean;
-    mark: string;
-    model: string;
-    fuel: string;
-    color: string;
-    owner: iOwner;
-  }
-
-  interface CarItem {
-    color: string;
-    createdAt: string;
-    deletedAt: string | null;
-    description: string;
-    fuel: string;
-    id: number;
-    image: string;
-    km: number;
-    mark: string;
-    model: string;
-    owner: {
-      name: string;
-      id: string;
-      email: string;
-      cpf: string;
-      phone: string;
-    };
-    price: number;
-    price_fipe: number;
-    publishedAt: boolean;
-    softDeleted: boolean;
-    updatedAt: string;
-    withinFipe: boolean;
-    year: string;
-  }
-  
+  };
+  color: string;
+}
   
   
   export const ProfileViewUserPage = () => {
       const [showModal, setShowModal] = useState(false);
       const [announceCreated, setAnnounceCreated] = useState(false);
-      const { currentUser, modalState } = useContext(AuthContext)
+      const { currentUser, modalState, profilePage, setProfilePage } = useContext(AuthContext)
       const [announces, setAnnounces] = useState<Array<iAnnounce>>([]);
 
       useEffect(() => {
-        console.log(announces)
         async function loadAnnounces() {
           try {
             const response = await api.get('/announce');
@@ -87,6 +60,7 @@ interface iOwner {
           }
         }
         loadAnnounces();
+        setProfilePage(true)
       }, [modalState, announceCreated]);
 
     const { id } = useParams()
@@ -123,8 +97,8 @@ interface iOwner {
                 <div className="announcements">
                     <h2>Anuncios</h2>
                     <div className="car-announcements-carrousel">
-                        {announces.map((announce) => (
-                            <CardAnnounce announce={announce} />
+                        {announces.map((cardItem) => (
+                            <CardAnnounce cardItem={cardItem} />
                         ))}
                     </div>
                 </div>

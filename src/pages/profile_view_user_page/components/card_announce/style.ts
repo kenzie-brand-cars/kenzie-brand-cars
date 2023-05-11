@@ -42,4 +42,20 @@ export const StyledCardAnnounce = styled.div`
       gap: 1rem;
     }
   }
+
+  .profile_buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .edit_button,
+  .detail_button {
+    width: auto;
+    padding: 8px;
+    border: 1.5px solid black;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+  }
 `

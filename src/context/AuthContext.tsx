@@ -9,6 +9,11 @@ interface IAuthContextProps {
     setModalState: React.Dispatch<React.SetStateAction<boolean>>
     trigger: boolean
     setTrigger: React.Dispatch<React.SetStateAction<boolean>>
+    profileName: string
+    setProfileName: React.Dispatch<React.SetStateAction<string>>
+    profilePage: boolean
+    setProfilePage: React.Dispatch<React.SetStateAction<boolean>>
+    
 }
 
 interface IAuthContextProviderProps {
@@ -34,6 +39,8 @@ export const AuthContextProvider = ({ children }: IAuthContextProviderProps) => 
     const [userAuthenticated, setUserAuthenticated] = useState<boolean>(false)
     const [currentUser, setCurrentUser] = useState<IUser>()
     const [loading, setLoading] = useState<boolean>(true)
+    const [profileName, setProfileName] = useState('')
+    const [profilePage, setProfilePage] = useState(false)
     const [modalState, setModalState] = useState<boolean>(false);
     const [trigger, setTrigger] = useState<boolean>(false)
     const verifyAuthUser = () => {
@@ -54,8 +61,17 @@ export const AuthContextProvider = ({ children }: IAuthContextProviderProps) => 
     }, [trigger])
     return (
         <AuthContext.Provider value={{
-            userAuthenticated, currentUser, loading, modalState, setModalState, trigger,
-            setTrigger
+            userAuthenticated, 
+            currentUser, 
+            loading, 
+            modalState, 
+            setModalState, 
+            trigger,
+            setTrigger,
+            profileName,
+            setProfileName,
+            profilePage,
+            setProfilePage
         }}>
             {children}
         </AuthContext.Provider>
