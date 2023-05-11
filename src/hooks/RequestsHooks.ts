@@ -52,6 +52,7 @@ export const useRequests = () => {
             }else{
                 console.log(error)
             }
+            throw new Error('')
         } 
     }
     const loginUserRequest = async (payload: FormDataLoginUser) =>{

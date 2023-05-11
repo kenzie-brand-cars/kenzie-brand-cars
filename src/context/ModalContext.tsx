@@ -2,8 +2,8 @@ import { createContext, useState } from "react";
 
 
 interface IModalContext {
-    modalType: "user" | "announce"| "create"
-    setModalType: React.Dispatch<React.SetStateAction<"user" | "announce"| "create">>
+    modalType: "user" | "announce"| "create" | "accountCreated"
+    setModalType: React.Dispatch<React.SetStateAction<"user" | "announce"| "create" | "accountCreated">>
     display: boolean
     setDisplay: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -15,7 +15,7 @@ export const ModalContext = createContext({} as IModalContext)
 
 
 export const ModalProvider = ({ children }: IModalProvider) => {
-    const [modalType, setModalType] = useState<"user" | "announce" | "create">("user")
+    const [modalType, setModalType] = useState<"user" | "announce" | "create" | "accountCreated">("user")
     const [display, setDisplay] = useState<boolean>(false)
     return (
         <ModalContext.Provider value={{

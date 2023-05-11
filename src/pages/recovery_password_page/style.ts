@@ -11,7 +11,13 @@ export const StyledRecoveryPasswordPage = styled.div`
     color: #212529;
     text-align: center;
   }
-
+  p {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #ff4d4f;
+      margin-top: 0.5rem;
+      text-align: center;
+    }
   form {
     display: flex;
     flex-direction: column;
