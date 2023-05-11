@@ -9,13 +9,20 @@ left: 50%; /* Posiciona a esquerda do modal no meio da tela */
 transform: translate(-50%, -50%); /* Move o modal para o centro da tela */
 display: flex;
 width: 520px; /* Define a largura do modal */
-height: 823px; /* Define a altura do modal */
+height: 80%; /* Define a altura do modal */
 background: #FFFFFF;
 border-radius: 8px;
 flex-direction: column;
 padding: 18px 24px;
 overflow-y: auto;
+&::-webkit-scrollbar {
+  width: 8px;               /* width of the entire scrollbar */
+}
 
+&::-webkit-scrollbar-thumb {
+  background-color: #4529E6;   
+  border-radius: 20px;      
+}
 h1 {
     font-size: 16px;
 }

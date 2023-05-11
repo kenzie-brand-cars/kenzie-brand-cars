@@ -7,6 +7,8 @@ import { GrClose } from 'react-icons/gr'
 import { useMatches, useNavigate } from 'react-router-dom'
 import { AuthContext } from "../../context/AuthContext"
 import { FilterContextMobile } from "../../context/FilterContext"
+import { NavbarContext } from "../../context/NavBarContext"
+import { ModalContext } from "../../context/ModalContext"
 
 interface INavbar {
     setModalState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -14,7 +16,8 @@ interface INavbar {
 }
 
 export const Navbar = ({ userAuthenticated, setModalState }: INavbar) => {
-    const [showNavbarMobile, setShowNavbarMobile] = useState<boolean>(false)
+    const {setDisplay, setModalType} = useContext(ModalContext)
+    const {showNavbarMobile, setShowNavbarMobile} = useContext(NavbarContext)
     const { currentUser } = useContext(AuthContext)
     const {displayFilter, setDisplayFilter} = useContext(FilterContextMobile)
     const navigate = useNavigate()
@@ -39,9 +42,12 @@ export const Navbar = ({ userAuthenticated, setModalState }: INavbar) => {
                     )}
                 </button>
                 {userAuthenticated ? (
-                    <div onClick={() => navigate('/profile')} className="profile-info">
-                        <h2 className="profile-initials">{currentUser?.name[0].toUpperCase()}{currentUser?.name[1].toUpperCase()}</h2>
-                        <p>{currentUser?.name}</p>
+                    <div className="profile-info">
+                        <h2 onClick={() => navigate('/profile')} className="profile-initials" >{currentUser?.name[0].toUpperCase()}{currentUser?.name[1].toUpperCase()}</h2>
+                        <p onClick={()=> {
+                            setModalType("user")
+                            setDisplay(true)
+                        } }>{currentUser?.name}</p>
                     </div>
                 ) : (
                     <div className="profile-info">

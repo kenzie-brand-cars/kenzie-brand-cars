@@ -17,7 +17,7 @@ export const CreateComentCard = ({idAnnounce, setCommentCreated}:ICreateComentCa
     const [comment, setComment] = useState<string>('')
     const handleSendComment = async() =>{
         await publicComment(idAnnounce, comment)
-        setComment("");
+        // setComment("");
         setTimeout(() => {
             setCommentCreated(true)
           }, 2000);

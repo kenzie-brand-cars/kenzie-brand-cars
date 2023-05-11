@@ -7,6 +7,9 @@ import { CircleInitials } from "../../components/circle_initials"
 import { CardAnnounce } from "./components/card_announce/card-announce"
 import CreateAnnounceModal from "./components/modal_announce"
 import api from "../../service/http"
+import { useRequests } from "../../hooks/RequestsHooks"
+import { IAnnouncesReponse } from "../home/components/announce_card"
+import { ModalContext } from "../../context/ModalContext"
 
 export interface iOwner {
   id: string;
@@ -46,27 +49,28 @@ export interface iAnnounce {
   export const ProfileViewUserPage = () => {
       const [showModal, setShowModal] = useState(false);
       const [announceCreated, setAnnounceCreated] = useState(false);
-      const { currentUser, modalState, profilePage, setProfilePage } = useContext(AuthContext)
-      const [announces, setAnnounces] = useState<Array<iAnnounce>>([]);
+      const {getAllAnnounces} = useRequests()
+      const { currentUser, modalState, profilePage, setProfilePage, trigger } = useContext(AuthContext)
+      const {setDisplay, setModalType} = useContext(ModalContext)
+      const [announces, setAnnounces] = useState<Array<IAnnouncesReponse>>([]);
 
       useEffect(() => {
         async function loadAnnounces() {
-          try {
-            const response = await api.get('/announce');
-            const filteredAnnounces = response.data.filter((item:any)=> item.owner.id === currentUser?.id);
-            setAnnounces(filteredAnnounces);
-          } catch (error) {
-            console.log(error);
+          const response = await getAllAnnounces()
+          if(response){
+            const filteredAnnounces = response.filter((item: any)=> item.owner.id === currentUser?.id);
+            setAnnounces(filteredAnnounces)
           }
         }
         loadAnnounces();
         setProfilePage(true)
-      }, [modalState, announceCreated]);
+      }, [modalState, announceCreated, currentUser,trigger]);
 
     const { id } = useParams()
 
     const handleCreateAnnounceClick = () => {
-      setShowModal(true);
+      setModalType('create')
+      setDisplay(true)
     }
     const handleCloseAnnounceClick = () => {
       setShowModal(false);
@@ -78,13 +82,12 @@ export interface iAnnounce {
 
     return (
         <Container>
-            {showModal ? 
+            {/* {showModal ? 
             <>
                 <CreateAnnounceModal handleClick={handleCloseAnnounceClick}/> 
             </>
             : 
-            <></>}
-            {announces ? 
+            <></>} */}
             <StyledProfileViewUserPage>
                 <div className="bg-brand-color">
                     <div className="card">
@@ -97,7 +100,7 @@ export interface iAnnounce {
                 <div className="announcements">
                     <h2>Anuncios</h2>
                     <div className="car-announcements-carrousel">
-                        {announces.map((cardItem) => (
+                        {announces?.map((cardItem) => (
                             <CardAnnounce cardItem={cardItem} />
                         ))}
                     </div>
@@ -107,9 +110,7 @@ export interface iAnnounce {
                     <p className="forward">Seguinte</p>
                 </div>
             </StyledProfileViewUserPage>
-            :
-            <></>
-            }
+
         </Container>
     )
 }

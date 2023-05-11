@@ -14,12 +14,17 @@ export default function LoginContent() {
   });
 
   const handleLogin = async (data: FormDataLoginUser) =>{
-    
-    await loginUserRequest(data)
-    navigate('/home')
-    toast.success('Login feito com sucesso',{
-      position: 'bottom-right'
-    })
+    try {
+      await loginUserRequest(data)
+      navigate('/home')
+      toast.success('Login feito com sucesso.',{
+        position: 'bottom-right'
+      })
+    } catch (error) {
+      toast.error('Email ou senha inválido.',{
+        position: 'bottom-right'
+      })
+    }
   }
 
   const navigate = useNavigate()

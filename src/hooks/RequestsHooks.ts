@@ -7,6 +7,10 @@ import { AuthContext } from "../context/AuthContext"
 import { ICarAnnouncementDetail } from "../pages/detail_announce"
 import { IAnnouncesReponse } from "../pages/home/components/announce_card"
 import { FormFilter } from "../schemas/filter_schema"
+import { EditUserFrom } from "../schemas/edit_user_schema"
+import { EditAnnounceForm } from "../schemas/edit_announce_schema"
+import { toast } from "react-toastify"
+import { CreateAnnounceForm } from "../schemas/create_announce_schema"
 
 
 
@@ -53,6 +57,7 @@ export const useRequests = () => {
     const loginUserRequest = async (payload: FormDataLoginUser) =>{
         try {
             const response = await api.post('/login', payload)
+            console.log('Passou da primeira linha do trycatch da função no hook.')
             localStorage.setItem('kenzie-brand-cars:token', response.data.token)
             localStorage.setItem('kenzie-brand-cars:current-user', JSON.stringify(response.data.user))
             setTrigger(!trigger)
@@ -62,8 +67,21 @@ export const useRequests = () => {
                 console.log(error.response?.data)
             }else{
                 console.log(error)
+                return error
             }
+            throw new Error()
         }
+    }
+    const editUserRequest = async (payload: any, id: string) => {
+        try {
+            const response = await api.patch(`/user/${id}`,payload)
+            console.log(response.data)
+            return response.data
+        } catch (error) {
+            console.log(error)
+        }
+
+
     }
     const getSpecificAnnounce = async (payload: number) => {
         try {
@@ -125,15 +143,50 @@ export const useRequests = () => {
             console.log(error)
         }
     }
+    const createAnnounce = async (payload: CreateAnnounceForm) => {
+        const galeryFake = []
+        for(let i= 0; i < 4; i++){
+            galeryFake.push(payload.gallery)
+        }
+        const payloadCorrect = {...payload, gallery:{images: galeryFake}}
+        try {
+            const response = await api.post('/announce',payloadCorrect)
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+            throw new Error('Algum erro')
+        }
+    }
+    const updateAnnounce = async (payload: EditAnnounceForm, id: string) => {
+        try {
+            const response = await api.patch(`/announce/${id}`, payload)
+            return response
+        } catch (error) {
+            console.log(error)
+            throw new Error('')
+        }
+    }
+    const deleteAnnounce = async (id: string) =>{
+        try {
+            const response = await api.delete(`/announce/${id}`)
+            return response
+        } catch (error) {
+            throw new Error('Algum erro')
+        }
+    }
     return{
         registerUserRequest,
         loginUserRequest,
+        editUserRequest,
         getSpecificAnnounce,
         getFilterParams,
         getAllAnnounces,
         getSpecifiAnnounceById,
         publicComment,
-        getFilterAnnounces
+        getFilterAnnounces,
+        createAnnounce,
+        updateAnnounce,
+        deleteAnnounce
     }
 
 }

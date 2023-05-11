@@ -40,4 +40,17 @@ ul{
         gap: .3rem;
     }
 }
+form{
+    display: flex;
+    flex-direction: column;
+}
+.btn-filter{
+    border: none;
+    background-color: #4529E6;
+    color: #fff;
+    font-weight: bold;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
 `

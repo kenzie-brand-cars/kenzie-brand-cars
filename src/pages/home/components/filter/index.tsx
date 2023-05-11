@@ -7,6 +7,7 @@ import { AnnouncesContext } from "../../../../context/AnnouncesContext";
 import { useContext } from "react";
 import { IAnnouncesReponse } from "../announce_card";
 import { FilterContextMobile } from "../../../../context/FilterContext";
+import { NavbarContext } from "../../../../context/NavBarContext";
 
 
 
@@ -16,6 +17,7 @@ export const Filter = ({...filters} :IFiltersResponse) => {
     const {getFilterAnnounces} = useRequests()
     const {announces, setAnnounces, trigger} = useContext(AnnouncesContext)
     const {displayFilter, setDisplayFilter} = useContext(FilterContextMobile)
+    const {showNavbarMobile, setShowNavbarMobile} = useContext(NavbarContext)
     const { register, handleSubmit, reset, formState: { errors } } = useForm<FormFilter>({
         resolver: yupResolver(schema)
       });
@@ -25,6 +27,7 @@ export const Filter = ({...filters} :IFiltersResponse) => {
             setAnnounces(response)
         }
         setDisplayFilter(!displayFilter)
+        setShowNavbarMobile(!showNavbarMobile)
       }
       const handleResetFilters = () =>{
           reset()
@@ -72,8 +75,18 @@ export const Filter = ({...filters} :IFiltersResponse) => {
                     ))}
                 </ul>
             </div>
-            <button type="submit">Aplicar Filtros</button>
-            <button onClick={handleResetFilters}>Limpar Filtros</button>
+            <div className="fuel">
+                <h2>Combustível</h2>
+                <ul>
+                    {filters.fuelFilters?.map((fuel)=> (
+                        <label key={fuel.type}>
+                            <input type="radio" {...register("fuel")} value={fuel.type}/><span>{fuel.type}</span>
+                        </label>
+                    ))}
+                </ul>
+            </div>
+            <button type="submit" className="btn-filter">Aplicar Filtros</button>
+            <button onClick={handleResetFilters} className="btn-filter">Limpar Filtros</button>
             </form>
         </StyledFilter>
     )
