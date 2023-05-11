@@ -31,6 +31,9 @@ export const StyledNavbar = styled.header`
       display: none;
     }
   }
+  .logo{
+    cursor: pointer;
+  }
   .profile-info {
     display: none;
     height: 100%;
@@ -38,6 +41,8 @@ export const StyledNavbar = styled.header`
     align-items: center;
     padding: 0 1rem;
     gap: 1rem;
+    cursor: pointer;
+    
     p {
       color: #495057;
     }

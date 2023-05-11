@@ -1,10 +1,9 @@
-import { Gallery } from "../.."
 import { CardContainer } from "../card_container"
 import { StyledCarImageGalery } from "./style"
 
 
 interface ICarImageGalery {
-    galery: Gallery
+    galery: string[]
     className?: string
 }
 
@@ -15,7 +14,7 @@ export const CarImageGalery = ({ galery,
             <StyledCarImageGalery>
                 <h2>Fotos</h2>
                 <div className="galery">
-                    {galery.images.map(image => {
+                    {galery.map(image => {
                         return (
                             <div className="box-image">
                                 <img src={image} alt="" />

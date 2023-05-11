@@ -1,21 +1,38 @@
+import { useNavigate } from "react-router-dom"
+
 import { StyledAdvertiserCard } from "./style"
+import { Owner } from "../.."
 
 
-interface IAdvertiserCard{
-    className?:string
+interface IAdvertiserCard {
+    owner: Owner
+    className?: string
 }
 
-export const AdvertiserCard = ({className}: IAdvertiserCard) => {
+export const AdvertiserCard = ({ className, owner }: IAdvertiserCard) => {
+    const navigate = useNavigate()
+    const handleNavigateToProfileUser = (id: string) =>{
+        console.log(id)
+        navigate(`/announcer/${id}`) 
+    }
     return (
-        <StyledAdvertiserCard>
+        <StyledAdvertiserCard className={className}>
             <div className="profile-initials">
-                <h2 >
-                    S L
-                </h2>
+
+                {owner.name.split(' ').length > 1 ? (
+                    <h2>
+                        {owner.name.split(' ')[0][0]} {owner.name.split(' ')[1][0]}
+                    </h2>
+                ) :
+                    <h2>
+                        {owner.name.split(' ')[0][0]}
+                    </h2>
+                }
+
             </div>
-            <h3>Samuel Leão</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates asperiores quae est vitae impedit pariatur doloribus debitis ducimus adipisci eum! Ex aliquam corrupti iste unde reprehenderit eum quis explicabo perspiciatis?</p>
-            <button>Ver todos anuncios</button>
+            <h3>{owner.name}</h3>
+            <p>{owner.description}</p>
+            <button onClick={()=>handleNavigateToProfileUser(owner.id)}>Ver todos anuncios</button>
         </StyledAdvertiserCard>
     )
 }

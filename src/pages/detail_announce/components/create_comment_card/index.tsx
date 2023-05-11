@@ -1,21 +1,47 @@
+import { useContext, useState } from "react"
 import { CardContainer } from "../card_container"
 import { StyledCreateComentCard } from "./style"
+import { AuthContext } from "../../../../context/AuthContext"
+import { useRequests } from "../../../../hooks/RequestsHooks"
 
 
+interface ICreateComentCard{
+    idAnnounce:number
+    setCommentCreated: any
+}
 
 
-
-export const CreateComentCard = () => {
-
+export const CreateComentCard = ({idAnnounce, setCommentCreated}:ICreateComentCard) => {
+    const {currentUser} = useContext(AuthContext)
+    const {publicComment} = useRequests()
+    const [comment, setComment] = useState<string>('')
+    const handleSendComment = async() =>{
+        await publicComment(idAnnounce, comment)
+        // setComment("");
+        setTimeout(() => {
+            setCommentCreated(true)
+          }, 2000);
+          setCommentCreated(false)
+    }
     return (
         <CardContainer>
             <StyledCreateComentCard>
                 <div className="create-coment-header">
-                    <h2 className="profile-initials">SL</h2>
-                    <p>Samuel Leão</p>
+                    <h2 className="profile-initials">
+                    {currentUser!.name.split(' ').length > 1 ? (
+                    <>
+                        {currentUser!.name.split(' ')[0][0]}{currentUser!.name.split(' ')[1][0]}
+                    </>
+                ) :
+                    <>
+                        {currentUser!.name[0]}
+                    </>
+                }
+                    </h2>
+                    <p>{currentUser!.name}</p>
                 </div>
-                <textarea name="" id="" cols={30} rows={7} placeholder="Digite seu comentario aqui"></textarea>
-                <button>Comentar</button>
+                <textarea name="" id="" cols={30} rows={7} placeholder="Digite seu comentario aqui" onChange={(e)=>setComment(e.target.value)} value={comment}></textarea>
+                <button onClick={handleSendComment}>Comentar</button>
                 <div className="shortcuts">
                     <p>Gostei muito!</p>
                     <p>Incrivel</p>

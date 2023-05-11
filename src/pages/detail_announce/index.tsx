@@ -12,78 +12,106 @@ import { AnnouncementComents } from "./components/announcement_coments"
 import { CreateComentCard } from "./components/create_comment_card"
 import { Footer } from "../../components/footer"
 import { BackgroundBlue } from "./components/bg_blue"
+import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useRequests } from "../../hooks/RequestsHooks"
+
 export interface ICarAnnouncementDetail {
-    year: number;
+    id: number;
     km: number;
     price_fipe: number;
     price: number;
     description: string;
     image: string;
+    withinFipe: boolean;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: null;
+    softDeleted: boolean;
+    publishedAt: boolean;
     mark: string;
     model: string;
     fuel: string;
     color: string;
-    gallery: Gallery;
+    owner: Owner;
+    comments: Comment[];
+    year: string;
+    gallery: string[]
 }
-
-export interface Gallery {
-    images: string[];
+export interface Comment {
+    text: string;
+    createdAt: string;
+    author: {
+      id: string;
+      name: string;
+      email: string;
+      reset_token: null | string;
+      cpf: string;
+      phone: string;
+      birthDate: string;
+      description: string;
+      type: string;
+      admin: boolean;
+    };
+  }
+  
+export interface Owner {
+    name: string;
+    id: string;
+    email: string;
+    cpf: string;
+    phone: string;
+    birthDate: string;
+    description: string;
+    type: string;
+    admin: boolean;
 }
 
 
 
 export const DetailAnnouncementPage = () => {
-    const currentCar: ICarAnnouncementDetail = {
-        "year": 2019,
-        "km": 20000,
-        "price_fipe": 40000,
-        "price": 42000,
-        "description": "Excelente estado, único dono",
-        "image": modelCar,
-        "mark": "Toyota",
-        "model": "Corolla",
-        "fuel": "Gasolina",
-        "color": "Preto",
-        "gallery": {
-            "images": [
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar,
-                modelCar
-            ]
+
+    const { getSpecificAnnounce } = useRequests()
+    const { id } = useParams()
+    const [currentCar, setCurrentCar] = useState<ICarAnnouncementDetail>()
+    const [commentCreated, setCommentCreated] = useState(false);
+    const fetchData = async () => {
+        const response = await getSpecificAnnounce(parseFloat(id as string))
+        if (response) {
+            const gallery: string[] = []
+            for (let i = 0; i < 5; i++) {
+                gallery.push(response.image)
+            }
+            
+            setCurrentCar({ ...response, gallery })
         }
+    }
+    useEffect(() => {
+        fetchData()
+    }, [commentCreated])
+
+    if (!currentCar) {
+        return null
     }
     return (
         <StyledDetailAnnouncementPage>
-            {/* <Navbar /> */}
             <Container>
-                <h2>Anuncio detail page                </h2>
-                {/* <div className="layout">
-                    <div className="mobile">
+                <div className="layout">
+                    <div className="original">
                         <BackgroundBlue />
                         <CarImageCard sourceImage={currentCar.image} />
-                        <CarInfoCard color={currentCar.color} fuel={currentCar.fuel} km={currentCar.km} mark={currentCar.mark} model={currentCar.model} price={currentCar.price} price_fipe={currentCar.price_fipe} year={currentCar.year} />
+                        <CarInfoCard color={currentCar.color} fuel={currentCar.fuel} km={currentCar.km} mark={currentCar.mark} model={currentCar.model} price={currentCar.price} price_fipe={currentCar.price_fipe} year={parseFloat(currentCar.year)} />
                         <CarDescriptionCard description={currentCar.description} />
-                        <CarImageGalery className="custom-mobile" galery={currentCar.gallery} />
-                        <AdvertiserCard className="custom-mobile"/>
-                        <AnnouncementComents />
-                        <CreateComentCard />
+                        <CarImageGalery className="only-mobile" galery={currentCar.gallery} />
+                        <AdvertiserCard className="only-mobile" owner={currentCar.owner} />
+                        <AnnouncementComents coments={currentCar.comments}/>
+                        <CreateComentCard setCommentCreated={setCommentCreated} idAnnounce={currentCar.id}/>
                     </div>
                     <div className="desktop">
-                        <CarImageGalery className="custom-desktop" galery={currentCar.gallery}/>
-                        <AdvertiserCard />
+                        <CarImageGalery galery={currentCar.gallery} />
+                        <AdvertiserCard owner={currentCar.owner} />
                     </div>
-                </div> */}
+                </div>
             </Container>
         </StyledDetailAnnouncementPage>
 

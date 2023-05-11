@@ -11,7 +11,7 @@ export const StyledCircleInitials = styled.div<IStyledCircleInitialsProps>`
   align-items: center;
   width: ${(props)=> props.size? `${props.size}rem`: '2rem'};
   min-height: ${(props)=> props.size? `${props.size}rem`: '2rem'};
-  background-color: #4529e6;
+  background-color: ${(props)=> props.color? `${props.color}`:'#4529e6'} ;
   border-radius: 50%;
   font-weight: 500;
   color: #fff;

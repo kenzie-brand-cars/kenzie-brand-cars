@@ -27,6 +27,9 @@ background-color: white;
     .burguer_icon {
         display: none;
     }
+    p {
+        cursor: pointer;
+    }
     .login_desktop {
         display: flex;
         color: #4529E6;

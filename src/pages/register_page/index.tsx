@@ -5,23 +5,25 @@ import { useRequests } from "../../hooks/RequestsHooks"
 import { StyledRegisterPage } from "./style"
 import { FormDataRegisterUser, schema } from "../../schemas/register_user_schema"
 import { yupResolver } from '@hookform/resolvers/yup';
+import { redirect, useNavigate } from "react-router-dom"
 
 
 
 export const RegisterPage = () => {
+    const navigate = useNavigate()
     const {registerUserRequest} = useRequests()
-    const { register, handleSubmit, reset, formState: { errors } } = useForm<FormDataRegisterUser>({
+    const { register, handleSubmit, formState: { errors } } = useForm<FormDataRegisterUser>({
         resolver: yupResolver(schema)
       });
     const handleRegister = (data:FormDataRegisterUser ) =>{
-        console.log(data)
+        
         registerUserRequest(data)
+        navigate('')
     }
 
     return (
         <Container>
             <StyledRegisterPage>
-                {/* <Navbar/> */}
                 <h2>Cadastro</h2>
                 <p>Informações pessoais</p>
                 <form className="" onSubmit={handleSubmit(handleRegister)}>
