@@ -8,7 +8,7 @@ export const schema = yup.object({
     .email("O email deve ser um email válido"),
   cpf: yup
     .string()
-    .required(),
+    .required("O campo é obrigatório"),
     // .matches(
     //   /[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}/gm,
     //   "O padrão de CPF é inválido."

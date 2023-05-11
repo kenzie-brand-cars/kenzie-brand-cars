@@ -27,6 +27,9 @@ export const StyledRegisterPage = styled.div`
     gap: 1rem;
     label {
       width: 100%;
+      span{
+        color: #CD2B31;
+      }
       p {
         margin-bottom: 0.5rem;
       }
