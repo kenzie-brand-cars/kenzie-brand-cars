@@ -23,11 +23,11 @@ function App() {
         <Route path='' element={userAuthenticated ? <Navigate to='/home' /> : <Login />} />
         <Route path='/register' element={userAuthenticated ? <Navigate to='/announce-detail' /> : <RegisterPage />} />
         <Route path='/announcer/:id' element={<Announce />} />
-        <Route path='/profile/' element={<ProfileViewUserPage />} />
         <Route path='/user/reset_password' element={<RecoveryPassMailPage />} />
         <Route path='/user/reset_password/:token' element={<RecoveryPasswordPage />} />
-        <Route path='/home' element={<HomePage/>}/>
+        <Route path='/home' element={<HomePage />} />
         <Route element={<ProtectedRoutes />}>
+          <Route path='/profile/' element={<ProfileViewUserPage />} />
           <Route path='/announce-detail/:id' element={<DetailAnnouncementPage />} />
         </Route>
       </Routes>

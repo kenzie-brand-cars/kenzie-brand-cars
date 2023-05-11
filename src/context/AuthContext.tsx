@@ -4,6 +4,7 @@ import  api  from "../service/http";
 interface IAuthContextProps {
     userAuthenticated: boolean,
     currentUser: IUser | undefined,
+    setCurrentUser:  React.Dispatch<React.SetStateAction<IUser | undefined>>
     loading: boolean,
     modalState: boolean,
     setModalState: React.Dispatch<React.SetStateAction<boolean>>
@@ -71,7 +72,7 @@ export const AuthContextProvider = ({ children }: IAuthContextProviderProps) => 
             profileName,
             setProfileName,
             profilePage,
-            setProfilePage
+            setProfilePage,setCurrentUser
         }}>
             {children}
         </AuthContext.Provider>
