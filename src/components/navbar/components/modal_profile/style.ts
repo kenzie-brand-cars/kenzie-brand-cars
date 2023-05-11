@@ -48,6 +48,13 @@ textarea {
     padding-top: 36px;
 }
 
+.close_icon {
+    display: flex;
+    flex-direction: row-reverse;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 .footer_btns {
     display: flex;
     align-items: center;

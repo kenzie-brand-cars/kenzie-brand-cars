@@ -16,7 +16,7 @@ export const CardAnnounce = (props: iCardAnnounceProps) => {
         <StyledCardAnnounce>
             <div className="card-announce">
                 <div className="car-image-container">
-                    <img src={carImage} alt="" />
+                    <img src={props.announce.image} alt="" />
                 </div>
                 <div className="car-info">
                     <p>{props.announce.model}</p>

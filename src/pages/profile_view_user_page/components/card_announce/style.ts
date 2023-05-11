@@ -7,9 +7,6 @@ export const StyledCardAnnounce = styled.div`
       flex-basis: 20%;
     }
   .card-announce {
-    .car-image-container {
-      background-color: #e9ecef;
-    }
     .owner-accounce {
       margin-top: 1rem;
       display: flex;
@@ -17,6 +14,18 @@ export const StyledCardAnnounce = styled.div`
       align-items: center;
     }
   }
+
+  .car-image-container {
+    width: 100%;
+    height: 5rem;
+    background-color: #e9ecef;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
   .car-info-detail {
       display: flex;
       justify-content: space-between;

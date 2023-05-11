@@ -76,21 +76,22 @@ export const DetailAnnouncementPage = () => {
     const { getSpecificAnnounce } = useRequests()
     const { id } = useParams()
     const [currentCar, setCurrentCar] = useState<ICarAnnouncementDetail>()
+    const [commentCreated, setCommentCreated] = useState(false);
     const fetchData = async () => {
-        const resposne = await getSpecificAnnounce(parseFloat(id as string))
-        if (resposne) {
+        const response = await getSpecificAnnounce(parseFloat(id as string))
+        if (response) {
             const gallery: string[] = []
             for (let i = 0; i < 5; i++) {
-                gallery.push(resposne.image)
+                gallery.push(response.image)
             }
             
-            setCurrentCar({ ...resposne, gallery })
+            setCurrentCar({ ...response, gallery })
         }
     }
     useEffect(() => {
         fetchData()
-        
-    }, [])
+    }, [commentCreated])
+
     if (!currentCar) {
         return null
     }
@@ -106,7 +107,7 @@ export const DetailAnnouncementPage = () => {
                         <CarImageGalery className="only-mobile" galery={currentCar.gallery} />
                         <AdvertiserCard className="only-mobile" owner={currentCar.owner} />
                         <AnnouncementComents coments={currentCar.comments}/>
-                        <CreateComentCard idAnnounce={currentCar.id}/>
+                        <CreateComentCard setCommentCreated={setCommentCreated} idAnnounce={currentCar.id}/>
                     </div>
                     <div className="desktop">
                         <CarImageGalery galery={currentCar.gallery} />

@@ -39,7 +39,7 @@ export const Navbar = ({ userAuthenticated, setModalState }: INavbar) => {
                     )}
                 </button>
                 {userAuthenticated ? (
-                    <div onClick={changeModalState} className="profile-info">
+                    <div onClick={() => navigate('/profile')} className="profile-info">
                         <h2 className="profile-initials">{currentUser?.name[0].toUpperCase()}{currentUser?.name[1].toUpperCase()}</h2>
                         <p>{currentUser?.name}</p>
                     </div>
